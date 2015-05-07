@@ -29,15 +29,39 @@ $("#deposit1").click(function(){
 
 $("#withdraw1").click(function(){
     
-    //capture depo amount on click
     var withdrawamount = $("#amount1").val(); 
     console.log(withdrawamount);
     
-    var accounttotal = Number(currenttotal) - Number(withdrawamount);
-    currenttotal = accounttotal
-    console.log(currenttotal);
+     
 
+    var accounttotal = Number(currenttotal) - Number(withdrawamount);
+    
+    if (accounttotal >= 0){
+
+    currenttotal = accounttotal;
+    console.log(currenttotal);
     $('#balance1').text('$' + accounttotal);
+
+  }
+
+  else if (accounttotal < 0) {
+
+    var accounttotal = Number(savingstotal) - Number(withdrawamount);
+    $('#balance2').text('$' + accounttotal);
+
+  // }
+
+  }//endif
+
+  // else {
+
+  //   var accounttotal = Number(currenttotal) - Number(withdrawamount);
+  //   currenttotal = accounttotal
+  //   console.log(currenttotal);
+  //   $('#balance1').text('$' + accounttotal);
+
+
+  // }
 
 });
 
@@ -67,10 +91,19 @@ $("#withdraw2").click(function(){
     console.log(withdrawamount);
     
     var savaccounttotal = Number(savingstotal) - Number(withdrawamount);
+
+//if statement checks total before update to check not going under 0
+    if (savaccounttotal >= 0){
     savingstotal = savaccounttotal
     console.log(savingstotal);
-
     $('#balance2').text('$' + savaccounttotal);
+
+  } //endif
+ 
+else {alert('Cannot go below 0 in savings account')
+
+  console.log('Below zero error')
+}
 
 });
 
